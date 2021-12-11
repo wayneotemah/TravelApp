@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TravelApp"
+             x:Class="TravelApp.MainPage">
+
+    <StackLayout VerticalOptions="CenterAndExpand"
+                 Margin="20,0">
+        <!-- Place new controls here -->
+        <Entry x:Name="emailEntry"
+               Placeholder="Email"
+               IsTextPredictionEnabled="True"
+               Keyboard="Email"/>
+        
+        <Entry x:Name="passwordEntry" 
+               Placeholder="Password"
+               IsPassword="True"/>
+
+        <Label x:Name="infoLable"
+               Text="Hi, please login "
+               HorizontalOptions="CenterAndExpand"
+               TextColor="{StaticResource mainColor}"/>
+
+        <Button x:Name="LoginButton" 
+                Text="Log in"
+                Clicked="LoginButton_Clicked"
+                Margin="0,50,0,0"/>
+
+
+    </StackLayout>
+
+</ContentPage>
