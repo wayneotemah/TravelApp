@@ -12,6 +12,9 @@ namespace TravelApp
         public MainPage()
         {
             InitializeComponent();
+
+            var assembly = typeof(MainPage);
+            iconImage.Source = ImageSource.FromResource("TravelApp.Assets.Images.pic1.png", assembly);
         }
 
         private void LoginButton_Clicked(object sender, EventArgs e)
