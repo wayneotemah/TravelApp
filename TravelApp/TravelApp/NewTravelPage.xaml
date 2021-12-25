@@ -3,17 +3,43 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TravelApp.NewTravelPage">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Save"
-                     x:Name="Savebutton"
-                     Clicked="Savebutton_Clicked"/>
-
+        
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout VerticalOptions="CenterAndExpand"
-                     Margin="20,0">
-            <Label Text="Write your expitence" 
+        <StackLayout Margin="20,20"
+                     VerticalOptions="StartAndExpand">
+
+            <Label Text="Your Location"
+                   x:Name="DisplayLocation"
+                   FontSize="Large"
+                   Margin="0,20"
+                   />
+            <Label Text="latitude"
+                   x:Name="LatLable"
+                   FontSize="Small"/>
+            <Label Text="Longitude"
+                   x:Name="LonLable"
+                   FontSize="Small"
+                   Margin="0,0,0,20"/>
+
+            <Label Text="Location's Name"
                    TextColor="{StaticResource mainColor}"/>
-            <Entry x:Name="expirenceEntry"/>
+            <Entry Placeholder="Give a spacal name to your location"
+                   Margin="0,20"
+                   x:Name ="LocationNameEntry"/>
+            
+            <Label Text="Expirence" 
+                   TextColor="{StaticResource mainColor}"
+                   Margin="0,0,0,0"/>
+            
+            <Entry x:Name="expirenceEntry"
+                   Placeholder="How was the expirence"
+                   Margin="0,20"/>
+            
+            <Button Text="Save Expirence"
+                    x:Name="Savebutton"
+                    Clicked="Savebutton_Clicked"/>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

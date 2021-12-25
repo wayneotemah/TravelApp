@@ -1,10 +1,11 @@
 ﻿using Plugin.Geolocator;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using TravelApp.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms.Xaml;
@@ -23,7 +24,6 @@ namespace TravelApp
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            Map map = new Map() { IsShowingUser = true }; 
 
             var locator = CrossGeolocator.Current;
 
@@ -32,17 +32,47 @@ namespace TravelApp
               
             var position = await locator.GetPositionAsync();
             var center = new Position(position.Latitude,position.Longitude);
-            var span = new MapSpan(center, 2, 2);
-            map.MoveToRegion(span);
-            map.Pins.Add(new Pin
-            {
-                Label = "You are here",
-                Position = center
-            });
+            var span = new MapSpan(center, 1, 1);
+            locationMap.MoveToRegion(span);
+            
 
-            Content = map;
+            using (SQLiteConnection conn = new SQLiteConnection(App.DataBaseLocation))
+            {
+                conn.CreateTable<Post>();
+                var posts = conn.Table<Post>().ToList();
+                DisplayinMap(posts);
+            }
+        }
+
+        private void DisplayinMap(List<Post> posts)
+        {
+            foreach(var post in posts)
+            {
+                try
+                {
+                    var position = new Position(Convert.ToDouble(post.Latitude), Convert.ToDouble(post.Longitude));
+
+                    var pin = new Pin()
+                    {
+                        Type = PinType.SavedPin,
+                        Position = position,
+                        Label = post.VenueName,
+
+                    };
+                    locationMap.Pins.Add(pin);
+
+                }
+                catch (NullReferenceException nre) { }
+                catch (Exception ex)
+                {
+                    DisplayAlert("Failure", ex.ToString(), "Okay");
+                }
+            }
+            
+            
 
         }
+
 
         protected override async void OnDisappearing()
         {
@@ -61,16 +91,9 @@ namespace TravelApp
             var center = new Position(e.Position.Latitude, e.Position.Longitude);
             var span = new MapSpan(center, 2, 2);
 
-            map.MoveToRegion(span);
+            locationMap.MoveToRegion(span);
 
-            map.Pins.Add(new Pin
-            {
-                Label = "You are here",
-                Position = center
-            });
-
-
-            Content = map;
+            
         }
 
 

@@ -13,5 +13,12 @@ namespace TravelApp.Models
         [MaxLength(250)]
         public string Experience { get; set; }
 
+        public string VenueName { get; set; }
+
+        public string Longitude { get; set; }
+
+        public string Latitude { get; set; }
+
+
     }
 }
