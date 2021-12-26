@@ -1,9 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TravelApp.Modelview"
              x:Class="TravelApp.NewTravelPage">
+    <ContentPage.BindingContext>
+        <local:CategorymodelView>
+            
+        </local:CategorymodelView>
+    </ContentPage.BindingContext>
     <ContentPage.ToolbarItems>
-        
+        <ToolbarItem 
+            Text="Save"  
+            x:Name="Savebutton"
+            Clicked="Savebutton_Clicked"
+            Icon="save.png"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout Margin="20,20"
@@ -11,15 +21,15 @@
 
             <Label Text="Your Location"
                    x:Name="DisplayLocation"
-                   FontSize="Large"
+                   FontSize="Default"
                    Margin="0,20"
                    />
             <Label Text="latitude"
                    x:Name="LatLable"
-                   FontSize="Small"/>
+                   FontSize="Micro"/>
             <Label Text="Longitude"
                    x:Name="LonLable"
-                   FontSize="Small"
+                   FontSize="Micro"
                    Margin="0,0,0,20"/>
 
             <Label Text="Location's Name"
@@ -27,7 +37,13 @@
             <Entry Placeholder="Give a spacal name to your location"
                    Margin="0,20"
                    x:Name ="LocationNameEntry"/>
-            
+
+            <Picker ItemDisplayBinding="{Binding Categorytype}"
+                    x:Name="CategoryEntry"
+                    Title="Category"
+                     ItemsSource="{Binding CategoryList}"/>
+
+           
             <Label Text="Expirence" 
                    TextColor="{StaticResource mainColor}"
                    Margin="0,0,0,0"/>
@@ -35,11 +51,7 @@
             <Entry x:Name="expirenceEntry"
                    Placeholder="How was the expirence"
                    Margin="0,20"/>
-            
-            <Button Text="Save Expirence"
-                    x:Name="Savebutton"
-                    Clicked="Savebutton_Clicked"/>
-            
+                        
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

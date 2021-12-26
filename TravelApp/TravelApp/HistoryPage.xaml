@@ -7,6 +7,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextCell Text="{Binding VenueName}"
+                              Detail="{Binding Category}"
                               TextColor="{StaticResource mainColor}"/>
                 </DataTemplate>
             </ListView.ItemTemplate>

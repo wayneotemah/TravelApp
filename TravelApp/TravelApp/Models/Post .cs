@@ -19,6 +19,7 @@ namespace TravelApp.Models
 
         public string Latitude { get; set; }
 
+        public string Category { get; set; }
 
     }
 }

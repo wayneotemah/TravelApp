@@ -24,13 +24,12 @@ namespace TravelApp
         {
             base.OnAppearing();
 
-            DisplayLocation.Text = "Looking up your location";
+            DisplayLocation.Text = "Please wait, looking up you location: ";
             try
             {
                 var locator = CrossGeolocator.Current;
                 var position = await locator.GetPositionAsync();
-                DisplayLocation.Text = $"Found You at (Lat,Long): ";
-                //public long = position.Longitude;
+                DisplayLocation.Text = $"Found you, proceed to add the details";
                 LatLable.Text = $"{position.Latitude}";
                 LonLable.Text = $"{position.Longitude}";
 
@@ -52,14 +51,15 @@ namespace TravelApp
             }
             else
             {
-      
+
                 Post post = new Post()
                 {
                     // create new post instance from the Post model and pass in the experience attribute
                     Experience = expirenceEntry.Text,
                     VenueName = LocationNameEntry.Text,
                     Longitude = LonLable.Text,
-                    Latitude = LatLable.Text
+                    Latitude = LatLable.Text,
+                    Category = ((Category)CategoryEntry.SelectedItem).Categorytype
                 };
                 //creaating local sql connction to store information in database
                 using (SQLiteConnection conn = new SQLiteConnection(App.DataBaseLocation))

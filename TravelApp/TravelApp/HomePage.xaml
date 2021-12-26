@@ -7,10 +7,14 @@
         <ToolbarItem 
             x:Name="addLocationButton"        
             Text="Add"
-            Clicked="AddLocationButton_Clicked"/>
+            Clicked="AddLocationButton_Clicked"
+            Icon="add.png"/>
     </TabbedPage.ToolbarItems>
-    <local:HistoryPage Title="History"/>
-    <local:MapPage Title="Map"/>
-    <local:ProfilePage Title="Profile"/>
+    <local:HistoryPage Title="History"
+                       Icon="home.png"/>
+    <local:MapPage Title="Map"
+                   Icon="map.png"/>
+    <local:ProfilePage Title="Profile"
+                       Icon="person.png"/>
 
 </TabbedPage>
